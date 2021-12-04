@@ -16,7 +16,7 @@ function Video(props) {
           </span>
           <iframe
             controls
-            src={props.video.url}
+            src={props.video.url.replace("watch?v=", "embed/")}
             title={props.video.id}
             // frameborder={element.id}
           ></iframe>

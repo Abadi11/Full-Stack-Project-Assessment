@@ -1,12 +1,12 @@
 import "./App.css";
-import AddVideos from "./AddVideos";
+import ShowVideos from "./ShowVideos";
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <h1>Video Recommendation</h1>
       </header>
-      <AddVideos />
+      <ShowVideos />
     </div>
   );
 }
