@@ -2,7 +2,16 @@
   text-align: center;
 }
 .video-container{
+  display: flex;
+  flex-flow: row wrap;
+  width: fit-content;
+  height: fit-content;
   border: 1px solid red;
+}
+.video{
+  display: flex;
+  flex-flow: column;
+  
 }
 .add-video{
   color: blue;

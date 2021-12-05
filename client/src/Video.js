@@ -7,9 +7,9 @@ function Video(props) {
     setDisplay(false);
   };
   return (
-    <div>
+    <div >
       {display && (
-        <div className="video-container">
+        <div className="video">
           <p>{props.video.title}</p>
           <span>
             <Vote />

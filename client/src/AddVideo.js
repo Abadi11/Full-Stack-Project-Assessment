@@ -25,7 +25,7 @@ function AddVideo(props) {
       <p className="add-video" onClick={() => setDisplay(() => true)}>
         Add video
       </p>
-      ;
+      
       {display && (
         <div>
           <form onSubmit={handleSubmit}>
@@ -55,7 +55,7 @@ function AddVideo(props) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
 export default AddVideo;

@@ -1,30 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Video from "./Video";
-import Search from "./Search";
-import AddVideo from "./AddVideo";
 import StaticData from "./data/exampleresponse.json";
 
-function ShowVideos() {
+function ShowVideos(props) {
   const [videos, setVideo] = useState(StaticData);
-  const [searchedValue, setSearchedValue] = useState("");
-  const search = (value) => {
-    setSearchedValue(value);
-  };
-  const add = (title, url) => {
-    let newObj = {title: title, url: url};
-    setVideo((prev) => prev.concat(newObj))
-  }
+  
+  useEffect(() => {
+    
+  },[]);
+    
+  // if (props.newObj) {
+  //   console.log("frnjgtrkhrjnvfsmc");
+    setVideo((prev) => prev.concat(props.newObj));
+  // }
+  
+
   return (
-    <div>
-      {/* Search */}
-      <Search search={search} />
-      {/* Search */}
-      {/* Add video */}
-      <AddVideo add={add}/>
-      {/* Add video */}
+    <div className="video-container">
       {videos
         .filter((video) =>
-          video.title.toLowerCase().includes(searchedValue.toLowerCase())
+          video.title.toLowerCase().includes(props.searchedValue.toLowerCase())
         )
         .map((video) => {
           return <Video video={video} />;
