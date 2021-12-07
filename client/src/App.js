@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import ShowVideos from "./ShowVideos";
 import Search from "./Search";
 import AddVideo from "./AddVideo";
+import StaticData from "./data/exampleresponse.json";
 function App() {
+  const [videos, setVideo] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:5000/').then(response => response.json()).then((data) => {
+    console.log(data)
+    setVideo(data)
+    });
+  }, [])
   // Search box content, link between search and show videos. It's taken from search component to ShowVideo. Thus, we put off design interferring between search and showVideo
   const [searchedValue, setSearchedValue] = useState("");
   const search = (value) => {
     setSearchedValue(value);
   };
   // AddVideo component
-  const [newObj, setNewObj] = useState({})
   const add = (title, url) => {
-    setNewObj({ title: title, url: url });
+    setVideo((prev) => prev.concat({ title: title, url: url }));
   };
   return (
     <div className="App">
@@ -25,7 +32,7 @@ function App() {
       {/* Add video */}
       <AddVideo add={add} />
       {/* Add video */}
-      <ShowVideos searchedValue={searchedValue} newObj={newObj}/>
+      <ShowVideos searchedValue={searchedValue} videos={videos}/>
     </div>
   );
 }

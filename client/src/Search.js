@@ -1,15 +1,12 @@
-import React, {useState, useEffect } from 'react'
+import React, {useState} from 'react'
 
 function Search(props) {
  
  const [searchInput, setSearchInput] = useState("");
- // const [count, setCount] = useState(0)
  const handleSearchInput = (e) => {
   setSearchInput(() => e.target.value);
   props.search(searchInput);
-  // setCount(() => count + 1)
  }
- // useEffect(() => {}, [count]);
  return (
    <div>
      <input
