@@ -3,7 +3,6 @@ import "./App.css";
 import ShowVideos from "./ShowVideos";
 import Search from "./Search";
 import AddVideo from "./AddVideo";
-import StaticData from "./data/exampleresponse.json";
 function App() {
   const [videos, setVideo] = useState([]);
   useEffect(() => {
@@ -17,10 +16,6 @@ function App() {
   const search = (value) => {
     setSearchedValue(value);
   };
-  // AddVideo component
-  const add = (title, url) => {
-    setVideo((prev) => prev.concat({ title: title, url: url }));
-  };
   return (
     <div className="App">
       <header className="App-header">
@@ -30,7 +25,7 @@ function App() {
       <Search search={search} />
       {/* Search */}
       {/* Add video */}
-      <AddVideo add={add} />
+      <AddVideo />
       {/* Add video */}
       <ShowVideos searchedValue={searchedValue} videos={videos}/>
     </div>

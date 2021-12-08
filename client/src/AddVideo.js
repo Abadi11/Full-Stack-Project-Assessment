@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function AddVideo(props) {
   const [display, setDisplay] = useState(false);
@@ -16,10 +16,8 @@ function AddVideo(props) {
   }
   const handleSubmit = (e) => {
    e.preventDefault();
-   let submitTitle = e.target["title"].value;
    let submitUrl = e.target["url"].value;
    if (submitUrl.includes("watch?v=")) {
-     props.add(submitTitle, submitUrl);
      fetch("http://localhost:5000/", {
        method: "POST",
        body: JSON.stringify({
@@ -30,7 +28,7 @@ function AddVideo(props) {
          "Content-Type": "application/json",
        },
      });
-  
+      window.location.reload(false);
    } else {
      alert("Please upload valid URL");
    }

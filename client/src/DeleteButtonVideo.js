@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 function DeleteButtonVideo(props) {
-  const deleteVideo = () => {
-    props.displayVideo();
+  const deleteVideo = (e) => {
     fetch(`http://localhost:5000/${props.id}`, {method: "DELETE"}).then(res=>res.json()).then(console.log);
+    window.location.reload(false);
   };
   return (
     <div>
