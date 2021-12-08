@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function DeleteButtonVideo(props) {
   const deleteVideo = () => {
     props.displayVideo();
-    // console.log("DeleteButtonVideo")
+    fetch(`http://localhost:5000/${props.id}`, {method: "DELETE"}).then(res=>res.json()).then(console.log);
   };
   return (
     <div>

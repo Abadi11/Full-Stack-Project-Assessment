@@ -20,7 +20,7 @@ function Video(props) {
             title={props.video.id}
             // frameborder={element.id}
           ></iframe>
-          <DeleteButtonVideo displayVideo={displayVideo} />
+          <DeleteButtonVideo displayVideo={displayVideo} id={props.video.id}/>
         </div>
       )}
     </div>

@@ -10,10 +10,13 @@ app.use(function (req, res, next) {
   next();
 });
 app.use(cors());
+app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+
 
 // Store and retrieve your videos from here
 // If you want, you can copy "exampleresponse.json" into here to have some data to work with
-let videos = [
+const videos = [
   {
     id: 523523,
     title: "Never Gonna Give You Up",
@@ -76,6 +79,16 @@ let videos = [
     rating: 73,
   },
 ];
+function newId (){
+  let id = Math.floor(Math.random() * 1000000) + 1;
+  for (let i=0; i<videos.length; i++){
+    if (id !== videos[i].id){
+      return id;
+    } else {
+      newId();
+    }
+  }
+}
 
 // GET "/"
 app.get("/", (req, res) => {
@@ -83,3 +96,41 @@ app.get("/", (req, res) => {
 });
 
 // POST "/"
+app.post('/', (req, res) => {
+  // console.log(req.body);
+  let response;
+  let newVideo = {
+    id: newId(),
+    title: req.body.title,
+    url: req.body.url,
+  };
+  // console.log(newVideo)
+
+  videos.push(newVideo);
+  res.sendStatus(201);
+})
+
+// GET /:ID
+app.get('/:id', (req, res) => {
+  let id = Number(req.params.id);
+  let videoId = videos.filter(video => video.id === id); 
+  res.send(videoId).status(204);
+})
+
+// DELETE /:ID
+app.delete('/:id', (req, res) => {
+  let id = Number(req.params.id);
+  console.log(id);
+  let index = videos.findIndex(video => video.id === id);
+  if (index > -1){
+    videos.splice(index, 1);
+    res.sendStatus(204).send(`${id} is deleted`);
+  }else{
+    let messageError = {
+      result: "failure",
+      message: "Video could not be deleted",
+    };
+    res.send(messageError).status(500)
+  }
+  
+})
