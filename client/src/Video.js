@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Vote from "./Vote";
 import DeleteButtonVideo from "./DeleteButtonVideo";
 function Video(props) {
-  const [display, setDisplay] = useState(true);
 
   return (
     <div className="video">

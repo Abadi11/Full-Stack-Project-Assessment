@@ -3,6 +3,7 @@ import "./App.css";
 import ShowVideos from "./ShowVideos";
 import Search from "./Search";
 import AddVideo from "./AddVideo";
+import SortVideos from "./SortVideos"
 function App() {
   const [videos, setVideo] = useState([]);
   useEffect(() => {
@@ -16,11 +17,16 @@ function App() {
   const search = (value) => {
     setSearchedValue(value);
   };
+
+  
   return (
     <div className="App">
       <header className="App-header">
         <h1>Video Recommendation</h1>
       </header>
+      {/* Sort */}
+      <SortVideos />
+      {/* Sort */}
       {/* Search */}
       <Search search={search} />
       {/* Search */}

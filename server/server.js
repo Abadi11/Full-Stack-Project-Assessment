@@ -109,8 +109,41 @@ app.post('/', (req, res) => {
   videos.push(newVideo);
   res.sendStatus(201);
 })
+// PUT => UPDATE sort
+app.put("/", (req,res) => {
+  console.log("Put has been called")
+  const sort = req.body.sort;
+  console.log("Type is :" + sort)
+  //let orderedVideos;  
+  if (sort === "asc"){
+      console.log("asc has been called");
+    // videos.sort(
+    //   (a, b) => a.title.charAt(0) - b.title.charAt(0)
+    // );
+    videos.sort((a, b) =>
+      a.title.charAt(0) > b.title.charAt(0)
+        ? 1
+        : b.title.charAt(0) > a.title.charAt(0)
+        ? -1
+        : 0
+    );
+  }else {
+      console.log("desc has been called");
+    // videos.sort(
+    //   (a, b) => b.title.charAt(0) - a.title.charAt(0)
+    // );
+    videos.sort((a, b) =>
+      a.title.charAt(0) < b.title.charAt(0)
+        ? 1
+        : b.title.charAt(0) < a.title.charAt(0)
+        ? -1
+        : 0
+    );
+  }
+  res.status(204).send(videos)
+})
 
-// GET /:ID
+// GET /:ID   
 app.get('/:id', (req, res) => {
   let id = Number(req.params.id);
   let videoId = videos.filter(video => video.id === id); 
@@ -134,3 +167,4 @@ app.delete('/:id', (req, res) => {
   }
   
 })
+
