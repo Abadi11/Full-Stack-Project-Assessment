@@ -1,29 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function SortVideos() {
   const [sort, setSort] = useState("desc");
 
-  const sortHandler = () => {
-    console.log("sortHandler function has been called");
-    if (sort === "asc") {
-      console.log("asc has been called");
-      fetch("http://localhost:5000/", {
-        method: "PUT",
-        body: JSON.stringify({
-          sort: sort,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      setSort(() => "desc");
-    }
+  
+  const sortHandler = (e) => {
+    // e.preventDefault();
+    // console.log("sortHandler function has been called");
     if (sort === "desc") {
-      console.log("desc has been called");
+      console.log("asc has been called");
+      
       fetch("http://localhost:5000/", {
         method: "PUT",
         body: JSON.stringify({
-          sort: sort,
+          sort: "asc",
         }),
         headers: {
           "Content-Type": "application/json",
@@ -31,12 +21,27 @@ function SortVideos() {
       });
       setSort(() => "asc");
     }
-
-    
-
+    if (sort === "asc") {
+      console.log("desc has been called");
+      
+      fetch("http://localhost:5000/", {
+        method: "PUT",
+        body: JSON.stringify({
+          sort: "desc",
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setSort( () => "desc");
+    }
+    // updateServer();
     // refresh the page without reload
     // window.location.reload(false);
   };
+  // useEffect(() => {
+    
+  // }, []);
   return (
     <div>
       <button onClick={sortHandler}>SORT</button>

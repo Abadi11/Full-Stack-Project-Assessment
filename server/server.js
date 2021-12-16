@@ -111,14 +111,14 @@ app.post('/', (req, res) => {
 })
 // PUT => UPDATE sort
 app.put("/", (req,res) => {
-  console.log("Put has been called")
+  // console.log("Put has been called")  
   const sort = req.body.sort;
   console.log("Type is :" + sort)
   //let orderedVideos;  
   if (sort === "asc"){
       console.log("asc has been called");
     // videos.sort(
-    //   (a, b) => a.title.charAt(0) - b.title.charAt(0)
+    //   (a, b) => a.title.charAt(0) - b.title.charAt(0)  
     // );
     videos.sort((a, b) =>
       a.title.charAt(0) > b.title.charAt(0)
