@@ -15,6 +15,9 @@ function Video(props) {
         title={props.video.id}
         // frameborder={element.id}
       ></iframe>
+      <span>
+        {props.video.time}{" "} {props.video.date}
+      </span>
       <DeleteButtonVideo id={props.video.id} />
     </div>
   );

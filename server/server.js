@@ -89,6 +89,12 @@ function newId (){
     }
   }
 }
+function addZero(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
 
 // GET "/"
 app.get("/", (req, res) => {
@@ -98,11 +104,23 @@ app.get("/", (req, res) => {
 // POST "/"
 app.post('/', (req, res) => {
   // console.log(req.body);
+  const d = new Date();
+  let day = d.getUTCDate();
+  let year = d.getUTCFullYear();
+  let month = d.getUTCMonth();
+  let h = addZero(d.getUTCHours());
+  let m = addZero(d.getUTCMinutes());
+  let s = addZero(d.getUTCSeconds());
+  const time = h + ":" + m + ":" + s;
+  const date = day+ "/" + month + "/" + year
+
   let response;
   let newVideo = {
     id: newId(),
     title: req.body.title,
     url: req.body.url,
+    date: date,
+    time: time
   };
   // console.log(newVideo)
 
